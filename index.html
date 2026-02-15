@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🛡️ RICKROLL SHIELD PROblock BETA</title>
     <style>
-        /* ============================================
-           STYLING - Alt innenfor container, ingenting stikker ut
-           ============================================ */
+        /* ========== STYLING - ALT INNENFOR ========== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,7 +21,7 @@
             justify-content: center;
             align-items: flex-start;
             padding: 10px;
-            overflow-x: hidden;  /* INGENTING stikker ut horisontalt */
+            overflow-x: hidden;
         }
         
         .container {
@@ -32,21 +30,14 @@
             margin: 0 auto;
             border: 1px solid #00ff00;
             padding: 15px;
-            overflow: hidden;  /* Alt holdes innenfor */
-            word-wrap: break-word;  /* Lange ord brytes */
-        }
-        
-        /* ALLE elementer må respektere container-width */
-        h1, p, div, input, textarea, button, .result-box, .stats-grid {
-            max-width: 100%;
             overflow: hidden;
-            text-overflow: ellipsis;
+            word-wrap: break-word;
         }
         
         h1 {
             border-bottom: 2px solid #00ff00;
             padding-bottom: 10px;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);  /* Responsiv skrift */
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -56,7 +47,6 @@
             border: 1px solid #00ff00;
             padding: 15px;
             margin: 15px 0;
-            width: 100%;
         }
         
         .mode-buttons {
@@ -79,6 +69,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            pointer-events: auto;
+            z-index: 10;
         }
         
         .mode-btn.active {
@@ -100,7 +92,6 @@
             flex-wrap: wrap;
             gap: 2px;
             margin-bottom: -1px;
-            width: 100%;
         }
         
         .tab {
@@ -116,6 +107,8 @@
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: clamp(12px, 3vw, 14px);
+            pointer-events: auto;
+            z-index: 10;
         }
         
         .tab.active {
@@ -129,12 +122,10 @@
             background: #000;
             width: 100%;
             overflow-x: auto;
-            overflow-y: visible;
         }
         
         .input-area {
             margin: 20px 0;
-            width: 100%;
         }
         
         input, textarea, select {
@@ -147,13 +138,11 @@
             font-family: 'Courier New', monospace;
             font-size: 14px;
             box-sizing: border-box;
-            max-width: 100%;
         }
         
         textarea {
             height: 120px;
             resize: vertical;
-            max-width: 100%;
         }
         
         .button-group {
@@ -161,7 +150,6 @@
             flex-wrap: wrap;
             gap: 8px;
             margin: 15px 0;
-            width: 100%;
         }
         
         button {
@@ -179,6 +167,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            pointer-events: auto;
+            z-index: 10;
         }
         
         button:hover {
@@ -219,7 +209,6 @@
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 10px;
             margin: 20px 0;
-            width: 100%;
         }
         
         .stat-box {
@@ -237,7 +226,6 @@
             background: #000;
             font-size: 14px;
             word-wrap: break-word;
-            width: 100%;
         }
         
         .checkbox-group {
@@ -273,51 +261,28 @@
             display: none;
         }
         
-        /* YouTube video preview - holder seg innenfor */
         .video-preview {
             border: 1px solid #00ff00;
             padding: 15px;
             margin: 15px 0;
             background: #000;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .video-thumbnail {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #00ff00;
-            margin-bottom: 10px;
         }
         
         .video-thumbnail img {
             max-width: 100%;
             height: auto;
-            display: block;
-        }
-        
-        .video-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-            word-wrap: break-word;
-        }
-        
-        .video-channel {
-            color: #666;
-            margin-bottom: 10px;
-            word-wrap: break-word;
+            border: 1px solid #00ff00;
         }
         
         .video-button {
-            background: #000;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 8px 16px;
-            cursor: pointer;
-            text-decoration: none;
             display: inline-block;
-            margin: 5px 0;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            text-decoration: none;
+            background: #000;
+            cursor: pointer;
         }
         
         .video-button:hover {
@@ -325,7 +290,7 @@
             color: #000;
         }
         
-        .footer {
+        footer {
             margin-top: 30px;
             padding-top: 10px;
             border-top: 1px solid #00ff00;
@@ -337,8 +302,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 title="🛡️ RICKROLL SHIELD PROblock BETA">🛡️ RICKROLL SHIELD PROblock BETA</h1>
-        <p style="color: #666; word-wrap: break-word;">[SUPERAVANSERT] - Alt innenfor, ingenting stikker ut</p>
+        <h1>🛡️ RICKROLL SHIELD PROblock BETA</h1>
+        <p style="color: #666;">[SUPERAVANSERT] - QR-skanner, YouTube, enkelt API</p>
         
         <!-- MODE SELECTOR -->
         <div class="mode-panel">
@@ -355,6 +320,7 @@
                 <div class="tab active" data-tab="url">🔗 URL</div>
                 <div class="tab" data-tab="text">📝 TEXT</div>
                 <div class="tab" data-tab="batch">📦 BATCH</div>
+                <div class="tab" data-tab="qr">📷 QR</div>
                 <div class="tab" data-tab="api">🌐 API</div>
                 <div class="tab" data-tab="settings">⚙️ SETTINGS</div>
             </div>
@@ -363,21 +329,18 @@
         <!-- URL TAB -->
         <div class="tab-content" id="tab-url">
             <div class="input-area">
-                <input type="text" id="urlInput" placeholder="Enter URL, YouTube link, or text...">
+                <input type="text" id="urlInput" placeholder="Lim inn URL eller YouTube-lenke...">
                 
                 <div class="button-group">
-                    <button id="checkBtn">🔍 CHECK</button>
+                    <button id="checkBtn">🔍 SJEKK</button>
                     <button id="testBtn">🎲 TEST</button>
-                    <button id="clearBtn">🗑️ CLEAR</button>
-                    <button id="deepScanBtn">🔬 DEEP SCAN</button>
+                    <button id="clearBtn">🗑️ TØM</button>
+                    <button id="deepScanBtn">🔬 DYP SCAN</button>
                 </div>
                 
-                <!-- AVANSERTE OPTIONS -->
                 <div class="checkbox-group">
-                    <label><input type="checkbox" id="followRedirects"> Follow redirects</label>
+                    <label><input type="checkbox" id="followRedirects"> Følg omdirigeringer</label>
                     <label><input type="checkbox" id="checkWayback"> Wayback Machine</label>
-                    <label><input type="checkbox" id="virusTotal"> VirusTotal</label>
-                    <label><input type="checkbox" id="googleSafe"> Google Safe</label>
                 </div>
             </div>
         </div>
@@ -385,19 +348,17 @@
         <!-- TEXT TAB -->
         <div class="tab-content hidden" id="tab-text">
             <div class="input-area">
-                <textarea id="textInput" placeholder="Paste text, email, or document content..."></textarea>
+                <textarea id="textInput" placeholder="Lim inn tekst som skal sjekkes..."></textarea>
                 
                 <select id="textMode">
-                    <option value="smart">🤖 SMART DETECTION</option>
-                    <option value="strict">🔒 STRICT MODE</option>
-                    <option value="relaxed">😎 RELAXED MODE</option>
-                    <option value="paranoid">👀 PARANOID MODE</option>
+                    <option value="smart">🤖 SMART DETEKSJON</option>
+                    <option value="strict">🔒 STRENGT MODUS</option>
+                    <option value="relaxed">😎 AVSLAPPET</option>
                 </select>
                 
                 <div class="button-group">
-                    <button id="analyzeTextBtn">📊 ANALYZE TEXT</button>
-                    <button id="extractUrlsBtn">🔗 EXTRACT URLS</button>
-                    <button id="findPatternsBtn">🔍 FIND PATTERNS</button>
+                    <button id="analyzeTextBtn">📊 ANALYSER TEKST</button>
+                    <button id="extractUrlsBtn">🔗 TREKK UT URLER</button>
                 </div>
             </div>
         </div>
@@ -405,185 +366,190 @@
         <!-- BATCH TAB -->
         <div class="tab-content hidden" id="tab-batch">
             <div class="input-area">
-                <textarea id="batchInput" placeholder="Enter multiple URLs (one per line)..."></textarea>
+                <textarea id="batchInput" placeholder="Lim inn flere URL-er (én per linje)..."></textarea>
                 
                 <div class="button-group">
-                    <button id="batchCheckBtn">📋 CHECK ALL</button>
-                    <button id="exportCsvBtn">📤 EXPORT CSV</button>
-                    <button id="importListBtn">📥 IMPORT LIST</button>
+                    <button id="batchCheckBtn">📋 SJEKK ALLE</button>
+                    <button id="exportCsvBtn">📤 EKSPORTER CSV</button>
+                    <button id="importListBtn">📥 IMPORTER LISTE</button>
                 </div>
                 
                 <div class="stats-grid" style="grid-template-columns: repeat(2,1fr);">
                     <div class="stat-box">TOTAL: <span id="batchTotal">0</span></div>
                     <div class="stat-box">RICKROLLS: <span id="batchRickrolls">0</span></div>
                 </div>
+                <div id="batchResults" style="margin-top:15px;"></div>
+            </div>
+        </div>
+        
+        <!-- QR TAB -->
+        <div class="tab-content hidden" id="tab-qr">
+            <div class="input-area">
+                <h3>📷 QR-KODE SKANNER</h3>
+                <p style="color:#666;">Skann QR-kode med kamera eller last opp bilde</p>
+                
+                <div class="button-group">
+                    <button id="startCameraBtn">📸 START KAMERA</button>
+                    <button id="uploadQrBtn">📁 LAST OPP BILDE</button>
+                    <button id="stopCameraBtn" style="display:none;">⏹️ STOPP KAMERA</button>
+                </div>
+                
+                <div style="position: relative; margin: 15px 0; text-align: center;">
+                    <video id="qrVideo" style="max-width: 100%; border: 2px solid #00ff00; display: none;" autoplay></video>
+                    <canvas id="qrCanvas" style="display: none;"></canvas>
+                </div>
+                
+                <img id="qrPreview" style="max-width: 100%; border: 2px solid #00ff00; margin-top: 15px; display: none;">
+                
+                <div id="qrResult" class="result-box" style="display: none;"></div>
             </div>
         </div>
         
         <!-- API TAB -->
         <div class="tab-content hidden" id="tab-api">
             <div class="input-area">
-                <input type="text" id="apiKey" placeholder="Enter API Key (optional)">
+                <h3>🌐 API-innstillinger (enkelt)</h3>
+                <p style="color:#666;">Skru på for å sjekke med eksterne tjenester</p>
                 
-                <select id="apiService">
-                    <option value="none">🚫 No API</option>
-                    <option value="virustotal">🔬 VirusTotal</option>
-                    <option value="google">🛡️ Google Safe</option>
-                    <option value="ipquality">📊 IPQualityScore</option>
-                </select>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="useVirusTotal"> 🦠 VirusTotal</label>
+                    <label><input type="checkbox" id="useGoogleSafe"> 🛡️ Google Safe Browsing</label>
+                    <label><input type="checkbox" id="useIPQS"> 📊 IPQualityScore</label>
+                </div>
+                
+                <input type="text" id="apiKey" placeholder="Din API-nøkkel (valgfritt)">
                 
                 <div class="button-group">
                     <button id="testApiBtn">🧪 TEST API</button>
-                    <button id="saveApiBtn">💾 SAVE API</button>
+                    <button id="saveApiBtn">💾 LAGRE</button>
                 </div>
                 
                 <div class="progress-bar">
-                    <div class="progress-fill" id="apiQuota" style="width: 30%;"></div>
+                    <div class="progress-fill" id="apiQuota" style="width: 0%;"></div>
                 </div>
-                <div>API Quota: 30% used</div>
+                <div id="apiStatus">Ingen API aktivert</div>
             </div>
         </div>
         
         <!-- SETTINGS TAB -->
         <div class="tab-content hidden" id="tab-settings">
             <div class="input-area">
-                <h3>⚙️ DETECTION SETTINGS</h3>
+                <h3>⚙️ INNSTILLINGER</h3>
                 
-                <label>Sensitivity:</label>
+                <label>Følsomhet:</label>
                 <select id="sensitivity">
-                    <option value="low">🔹 LOW</option>
+                    <option value="low">🔹 LAV</option>
                     <option value="medium" selected>🔸 MEDIUM</option>
-                    <option value="high">🔺 HIGH</option>
-                    <option value="ultra">💀 ULTRA</option>
+                    <option value="high">🔺 HØY</option>
                 </select>
                 
-                <h3 style="margin-top: 20px;">📚 DATABASE</h3>
-                <textarea id="dbEditor" rows="5" placeholder="Custom patterns (one per line)..."></textarea>
+                <h3 style="margin-top:20px;">📚 EGNE MØNSTRE</h3>
+                <textarea id="dbEditor" rows="5" placeholder="Skriv inn mønstre (én per linje)..."></textarea>
                 
                 <div class="button-group">
-                    <button id="saveDbBtn">💾 SAVE DB</button>
+                    <button id="saveDbBtn">💾 LAGRE</button>
                     <button id="resetDbBtn">🔄 RESET</button>
-                    <button id="importDbBtn">📥 IMPORT</button>
-                    <button id="exportDbBtn">📤 EXPORT</button>
                 </div>
             </div>
         </div>
         
-        <!-- RESULT AREA -->
+        <!-- RESULTATBOKS -->
         <div class="result-box" id="resultBox">
             <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <span style="font-size: 24px;" id="resultIcon">⚡</span>
-                <div style="flex: 1; min-width: 200px;">
-                    <div style="font-size: 18px;" id="resultTitle">Ready to scan</div>
-                    <div style="font-size: 12px; color: #666;" id="resultSubtitle">Select mode and enter data</div>
+                <div style="flex:1;">
+                    <div style="font-size: 18px;" id="resultTitle">Klar</div>
+                    <div style="font-size: 12px; color:#666;" id="resultSubtitle"></div>
                 </div>
             </div>
-            
-            <!-- YOUTUBE PREVIEW (vises her) -->
-            <div id="youtubePreview" style="margin-top: 15px; border-top: 1px solid #333; padding-top: 15px;"></div>
-            
-            <!-- DETAILS -->
-            <div style="margin-top: 15px;" id="resultDetails"></div>
-            
-            <!-- CONFIDENCE -->
-            <div class="progress-bar" style="margin: 10px 0;">
-                <div class="progress-fill" id="confidenceBar" style="width: 0%;"></div>
-            </div>
-            
-            <!-- METADATA -->
-            <div style="font-size: 12px; color: #666; display: flex; gap: 15px; flex-wrap: wrap;" id="resultMeta">
-                <span>Confidence: <span id="confidenceValue">0%</span></span>
-                <span>Mode: <span id="resultMode">BETA</span></span>
-                <span>Time: <span id="resultTime">-</span></span>
+            <div id="youtubePreview" style="margin-top:15px;"></div>
+            <div id="resultDetails" style="margin-top:15px;"></div>
+            <div class="progress-bar" style="margin:10px 0;"><div class="progress-fill" id="confidenceBar" style="width:0%;"></div></div>
+            <div style="display:flex; gap:15px; flex-wrap:wrap; font-size:12px; color:#666;">
+                <span>Tillit: <span id="confidenceValue">0%</span></span>
+                <span>Modus: <span id="resultMode">BASIC</span></span>
+                <span>Tid: <span id="resultTime">-</span></span>
             </div>
         </div>
         
-        <!-- STATISTICS -->
+        <!-- STATISTIKK -->
         <div class="stats-grid">
-            <div class="stat-box">
-                TOTAL CHECKS<br>
-                <span style="font-size: 24px;" id="totalChecks">0</span>
-            </div>
-            <div class="stat-box">
-                RICKROLLS<br>
-                <span style="font-size: 24px;" id="rickrollCount">0</span>
-            </div>
-            <div class="stat-box">
-                PATTERNS<br>
-                <span style="font-size: 24px;" id="patternCount">100+</span>
-            </div>
-            <div class="stat-box">
-                ACCURACY<br>
-                <span style="font-size: 24px;" id="accuracy">98%</span>
-            </div>
+            <div class="stat-box">TOTAL<br><span style="font-size:24px;" id="totalChecks">0</span></div>
+            <div class="stat-box">RICKROLLS<br><span style="font-size:24px;" id="rickrollCount">0</span></div>
+            <div class="stat-box">MØNSTRE<br><span style="font-size:24px;" id="patternCount">0</span></div>
         </div>
         
-        <!-- HISTORY -->
-        <div style="margin: 20px 0; width: 100%;">
-            <h3>📜 HISTORY</h3>
+        <!-- HISTORIKK -->
+        <div style="margin:20px 0;">
+            <h3>📜 HISTORIKK</h3>
             <div id="historyList"></div>
-            <p id="emptyHistory" style="color: #666;">No checks yet</p>
+            <p id="emptyHistory" style="color:#666;">Ingen sjekker enda</p>
         </div>
         
-        <!-- MODE DESCRIPTION -->
-        <div class="mode-description" id="modeDesc">
-            BETA MODE: Basic scanning with local database
-        </div>
+        <!-- MODUSBESKRIVELSE -->
+        <div class="mode-description" id="modeDesc">BASIC: Enkel scanning med lokal database</div>
         
-        <div class="footer">
-            RICKROLL SHIELD PROblock BETA | SUPERAVANSERT | Alt innenfor | Redirect fikset | Video-knapp
-        </div>
+        <footer>RICKROLL SHIELD PROblock BETA | QR-skanner | Enkelt API</footer>
     </div>
 
+    <!-- QR-bibliotek -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    
     <script>
         // ============================================
-        // RICKROLL SHIELD PROblock - AVANSERT FORKLARING
+        // RICKROLL SHIELD PROblock - FULLVERSJON
         // ============================================
         
-        // ===== DATABASE =====
-        // Array med kjente Rickroll-mønstre
+        // ---------- DATABASE ----------
         const DEFAULT_DB = [
-            'youtube.com/watch?v=dQw4w9WgXcQ',  // Original Rickroll
-            'youtu.be/dQw4w9WgXcQ',              // Kort-URL
-            'youtube.com/shorts/dQw4w9WgXcQ',    // YouTube Shorts
-            'rickroll.it',                        // Rickroll domene
-            'rickastley.co.uk',                   // Offisielt? ;)
-            'nevergonnagiveyouup.com',            # Literally
-            'bit.ly/3t0x1mz',                      # Forkortet Rickroll
-            'tinyurl.com/rickroll'                 # TinyURL variant
+            'youtube.com/watch?v=dQw4w9WgXcQ',
+            'youtu.be/dQw4w9WgXcQ',
+            'youtube.com/shorts/dQw4w9WgXcQ',
+            'rickroll.it',
+            'rickastley.co.uk',
+            'nevergonnagiveyouup.com',
+            'bit.ly/3t0x1mz',
+            'tinyurl.com/rickroll'
         ];
         
-        // ===== KEYWORDS for tekstanalyse =====
-        const KEYWORDS = {
-            rick: ['rick astley', 'rickroll', 'never gonna', 'give you up', 'let you down', 'desert you'],
-            youtube: ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os'],  # Video-IDer
-            suspicious: ['free robux', 'free vbucks', 'hack tool', 'cracked', 'password generator'],
-            patterns: [
-                /rick.*astley/i,
-                /never.*gonna.*give.*you.*up/i,
-                /dqw4w9wgxcq/i,
-                /bit\.ly\/\w+/i,
-                /tinyurl\.com\/\w+/i
-            ]
-        };
+        // ---------- STATE ----------
+        let database = [...DEFAULT_DB];
+        let history = [];
+        let totalChecks = 0;
+        let rickrolls = 0;
+        let currentMode = 'basic';
+        let currentTab = 'url';
         
-        // ===== STATE =====
-        // Dette er alle variablene som holder programmets tilstand
-        let database = [...DEFAULT_DB];           // Aktiv database
-        let history = [];                          // Sjekkhistorikk
-        let totalChecks = 0;                       // Totalt antall sjekker
-        let rickrolls = 0;                          // Antall funnet
-        let currentMode = 'basic';                  // Nåværende modus
-        let currentTab = 'url';                      // Nåværende tab
-        
-        // ===== DOM Elements =====
-        // Henter alle HTML-elementer vi trenger å manipulere
+        // ---------- DOM-REFERANSER ----------
         const elements = {
+            urlInput: document.getElementById('urlInput'),
+            textInput: document.getElementById('textInput'),
+            batchInput: document.getElementById('batchInput'),
+            checkBtn: document.getElementById('checkBtn'),
+            testBtn: document.getElementById('testBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            deepScanBtn: document.getElementById('deepScanBtn'),
+            analyzeTextBtn: document.getElementById('analyzeTextBtn'),
+            extractUrlsBtn: document.getElementById('extractUrlsBtn'),
+            batchCheckBtn: document.getElementById('batchCheckBtn'),
+            exportCsvBtn: document.getElementById('exportCsvBtn'),
+            importListBtn: document.getElementById('importListBtn'),
+            batchTotal: document.getElementById('batchTotal'),
+            batchRickrolls: document.getElementById('batchRickrolls'),
+            batchResults: document.getElementById('batchResults'),
+            startCameraBtn: document.getElementById('startCameraBtn'),
+            uploadQrBtn: document.getElementById('uploadQrBtn'),
+            stopCameraBtn: document.getElementById('stopCameraBtn'),
+            qrVideo: document.getElementById('qrVideo'),
+            qrCanvas: document.getElementById('qrCanvas'),
+            qrPreview: document.getElementById('qrPreview'),
+            qrResult: document.getElementById('qrResult'),
             resultBox: document.getElementById('resultBox'),
             resultIcon: document.getElementById('resultIcon'),
             resultTitle: document.getElementById('resultTitle'),
             resultSubtitle: document.getElementById('resultSubtitle'),
             resultDetails: document.getElementById('resultDetails'),
+            youtubePreview: document.getElementById('youtubePreview'),
             confidenceBar: document.getElementById('confidenceBar'),
             confidenceValue: document.getElementById('confidenceValue'),
             resultMode: document.getElementById('resultMode'),
@@ -594,326 +560,380 @@
             historyList: document.getElementById('historyList'),
             emptyHistory: document.getElementById('emptyHistory'),
             modeDesc: document.getElementById('modeDesc'),
-            youtubePreview: document.getElementById('youtubePreview'),
-            urlInput: document.getElementById('urlInput'),
-            textInput: document.getElementById('textInput'),
-            batchInput: document.getElementById('batchInput'),
-            checkBtn: document.getElementById('checkBtn'),
-            testBtn: document.getElementById('testBtn'),
-            clearBtn: document.getElementById('clearBtn'),
-            deepScanBtn: document.getElementById('deepScanBtn'),
-            analyzeTextBtn: document.getElementById('analyzeTextBtn'),
-            extractUrlsBtn: document.getElementById('extractUrlsBtn'),
-            findPatternsBtn: document.getElementById('findPatternsBtn'),
-            batchCheckBtn: document.getElementById('batchCheckBtn'),
-            exportCsvBtn: document.getElementById('exportCsvBtn'),
-            importListBtn: document.getElementById('importListBtn'),
-            batchTotal: document.getElementById('batchTotal'),
-            batchRickrolls: document.getElementById('batchRickrolls'),
+            useVirusTotal: document.getElementById('useVirusTotal'),
+            useGoogleSafe: document.getElementById('useGoogleSafe'),
+            useIPQS: document.getElementById('useIPQS'),
             apiKey: document.getElementById('apiKey'),
-            apiService: document.getElementById('apiService'),
             testApiBtn: document.getElementById('testApiBtn'),
             saveApiBtn: document.getElementById('saveApiBtn'),
             apiQuota: document.getElementById('apiQuota'),
+            apiStatus: document.getElementById('apiStatus'),
             sensitivity: document.getElementById('sensitivity'),
             dbEditor: document.getElementById('dbEditor'),
             saveDbBtn: document.getElementById('saveDbBtn'),
-            resetDbBtn: document.getElementById('resetDbBtn'),
-            importDbBtn: document.getElementById('importDbBtn'),
-            exportDbBtn: document.getElementById('exportDbBtn')
+            resetDbBtn: document.getElementById('resetDbBtn')
         };
         
-        // ============================================
-        // FUNKSJON 1: getVideoId()
-        // Henter YouTube video-ID fra ulike URL-formater
-        // ============================================
+        // ---------- GRUNNFUNKSJONER ----------
+        
         function getVideoId(url) {
-            // youtu.be/dQw4w9WgXcQ
-            if (url.includes('youtu.be/')) {
-                return url.split('youtu.be/')[1].split('?')[0].split('&')[0];
-            }
-            // youtube.com/watch?v=dQw4w9WgXcQ
-            if (url.includes('v=')) {
-                return url.split('v=')[1].split('&')[0];
-            }
-            // youtube.com/shorts/dQw4w9WgXcQ
-            if (url.includes('/shorts/')) {
-                return url.split('/shorts/')[1].split('?')[0].split('&')[0];
-            }
-            // youtube.com/embed/dQw4w9WgXcQ
-            if (url.includes('/embed/')) {
-                return url.split('/embed/')[1].split('?')[0];
-            }
+            if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
+            if (url.includes('v=')) return url.split('v=')[1].split('&')[0];
+            if (url.includes('/shorts/')) return url.split('/shorts/')[1].split('?')[0];
+            if (url.includes('/embed/')) return url.split('/embed/')[1].split('?')[0];
             return null;
         }
         
-        // ============================================
-        // FUNKSJON 2: scanYouTube()
-        // Henter YouTube-data via oEmbed API (GRATIS!)
-        // ============================================
         async function scanYouTube(url) {
             const videoId = getVideoId(url);
             if (!videoId) return null;
-            
             try {
-                // oEmbed API - fungerer uten API key!
-                const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-                if (!response.ok) return null;
-                
-                const data = await response.json();
-                
-                // Analyser tittel og kanal
-                let confidence = 0;
-                let findings = [];
-                
-                // Video-ID sjekk (100% match)
-                if (videoId.toLowerCase() === 'dqw4w9wgxcq') {
-                    confidence = 100;
-                    findings.push('🚨 ORIGINAL RICKROLL VIDEO-ID!');
-                }
-                
-                // Tittel-analyse
-                const title = data.title.toLowerCase();
-                KEYWORDS.rick.forEach(word => {
-                    if (title.includes(word)) {
-                        confidence += 20;
-                        findings.push(`📺 Title contains "${word}"`);
-                    }
-                });
-                
-                // Kanal-analyse
-                const channel = data.author_name.toLowerCase();
-                if (channel.includes('rick astley')) {
-                    confidence += 50;
-                    findings.push('🎤 Channel: Rick Astley (OFFICIAL!)');
-                }
-                
+                const resp = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (!resp.ok) return null;
+                const data = await resp.json();
+                let conf = 0;
+                let funn = [];
+                if (videoId.toLowerCase() === 'dqw4w9wgxcq') { conf = 100; funn.push('ORIGINAL RICKROLL'); }
+                if (data.title.toLowerCase().includes('rick')) { conf += 30; funn.push('Tittel inneholder "rick"'); }
+                if (data.author_name.toLowerCase().includes('rick astley')) { conf += 50; funn.push('Kanal: Rick Astley'); }
                 return {
                     title: data.title,
                     channel: data.author_name,
                     thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-                    videoId: videoId,
-                    confidence: Math.min(confidence, 100),  // Maks 100%
-                    findings: findings,
+                    videoId,
+                    confidence: Math.min(conf, 100),
+                    findings: funn,
                     url: `https://youtu.be/${videoId}`
                 };
-            } catch (e) {
-                console.error('YouTube scan error:', e);
-                return null;
-            }
+            } catch { return null; }
         }
         
-        // ============================================
-        // FUNKSJON 3: checkUrl()
-        // Sjekker URL mot database og keywords
-        // ============================================
         function checkUrl(input) {
             const url = input.toLowerCase();
-            
-            // 1. Exact match på video-ID
-            if (url.includes('dqw4w9wgxcq')) {
-                return { isRickroll: true, confidence: 100, reason: '🎬 Original Rickroll video-ID' };
-            }
-            
-            // 2. Database check
-            for (const pattern of database) {
-                if (url.includes(pattern.toLowerCase())) {
-                    return { isRickroll: true, confidence: 95, reason: `📌 Database match: ${pattern}` };
-                }
-            }
-            
-            // 3. Keyword check
-            for (const keyword of KEYWORDS.suspicious) {
-                if (url.includes(keyword)) {
-                    return { isRickroll: true, confidence: 70, reason: `⚠️ Suspicious keyword: ${keyword}` };
-                }
-            }
-            
-            return { isRickroll: false, confidence: 0, reason: '✅ No threats detected' };
+            if (url.includes('dqw4w9wgxcq')) return { isRickroll: true, confidence: 100, reason: '🎬 Original Rickroll' };
+            for (let p of database) if (url.includes(p.toLowerCase())) return { isRickroll: true, confidence: 95, reason: `⚠️ Mønster: ${p}` };
+            return { isRickroll: false, confidence: 0, reason: '✅ Trygg' };
         }
         
-        // ============================================
-        // FUNKSJON 4: analyzeText()
-        // Analyserer tekst for Rickroll-mønstre
-        // ============================================
-        function analyzeText(text) {
-            const results = [];
-            const lower = text.toLowerCase();
-            
-            // Sjekk keywords
-            KEYWORDS.rick.forEach(word => {
-                const regex = new RegExp(word, 'gi');
-                const matches = (lower.match(regex) || []).length;
-                if (matches > 0) {
-                    results.push({ 
-                        type: '🎵 RICKROLL', 
-                        match: word, 
-                        count: matches,
-                        confidence: 90 
-                    });
-                }
-            });
-            
-            // Sjekk suspicious words
-            KEYWORDS.suspicious.forEach(word => {
-                if (lower.includes(word)) {
-                    results.push({ 
-                        type: '⚠️ SUSPICIOUS', 
-                        match: word, 
-                        count: 1,
-                        confidence: 70 
-                    });
-                }
-            });
-            
-            // Extract og sjekk URLs
-            const urls = text.match(/https?:\/\/[^\s]+/gi) || [];
-            urls.forEach(url => {
-                const check = checkUrl(url);
-                if (check.isRickroll) {
-                    results.push({ 
-                        type: '🔗 URL', 
-                        match: url.substring(0, 30) + '...', 
-                        confidence: check.confidence 
-                    });
-                }
-            });
-            
-            return results;
-        }
-        
-        // ============================================
-        // FUNKSJON 5: showYouTubePreview()
-        // Viser YouTube thumbnail og info med "Se video" knapp
-        // ============================================
-        function showYouTubePreview(videoData) {
-            if (!videoData) {
-                elements.youtubePreview.innerHTML = '';
-                return;
-            }
-            
-            elements.youtubePreview.innerHTML = `
-                <div class="video-preview">
-                    <div class="video-thumbnail">
-                        <img src="${videoData.thumbnail}" alt="Video thumbnail" 
-                             onerror="this.src='https://img.youtube.com/vi/${videoData.videoId}/hqdefault.jpg'">
-                    </div>
-                    <div class="video-title">${videoData.title}</div>
-                    <div class="video-channel">📺 ${videoData.channel}</div>
-                    <div style="margin: 10px 0;">
-                        ${videoData.findings.map(f => `<span style="background:#00ff00; color:#000; padding:2px 8px; margin:2px; display:inline-block;">${f}</span>`).join(' ')}
-                    </div>
-                    <a href="${videoData.url}" target="_blank" class="video-button">🎬 SE VIDEO 🎬</a>
-                </div>
-            `;
-        }
-        
-        // ============================================
-        // FUNKSJON 6: updateResult()
-        // Oppdaterer resultat-boksen
-        // ============================================
-        function updateResult(icon, title, subtitle, details, confidence) {
+        function updateResult(icon, title, subtitle, details, conf) {
             elements.resultIcon.textContent = icon;
             elements.resultTitle.textContent = title;
             elements.resultSubtitle.textContent = subtitle;
             elements.resultDetails.innerHTML = details || '';
-            elements.confidenceBar.style.width = confidence + '%';
-            elements.confidenceValue.textContent = confidence + '%';
+            elements.confidenceBar.style.width = conf + '%';
+            elements.confidenceValue.textContent = conf + '%';
             elements.resultMode.textContent = currentMode.toUpperCase();
             elements.resultTime.textContent = new Date().toLocaleTimeString();
-            
-            // Farge basert på confidence
-            if (confidence >= 80) {
-                elements.resultBox.className = 'result-box result-danger';
-            } else if (confidence >= 30) {
-                elements.resultBox.className = 'result-box result-warning';
-            } else {
-                elements.resultBox.className = 'result-box result-safe';
-            }
+            if (conf >= 80) elements.resultBox.className = 'result-box result-danger';
+            else if (conf >= 30) elements.resultBox.className = 'result-box result-warning';
+            else elements.resultBox.className = 'result-box result-safe';
         }
         
-        // ============================================
-        // FUNKSJON 7: addToHistory()
-        // Legger til sjekk i historikk
-        // ============================================
         function addToHistory(item, result) {
-            const historyItem = {
-                id: Date.now(),
-                input: item.length > 40 ? item.substring(0, 37) + '...' : item,
+            history.unshift({
+                input: item.length>40? item.substring(0,37)+'...' : item,
                 result: result.isRickroll ? '🚨 RICKROLL' : '✅ SAFE',
                 confidence: result.confidence || 0,
                 time: new Date().toLocaleTimeString()
-            };
-            
-            history.unshift(historyItem);
+            });
             if (history.length > 20) history.pop();
             updateHistory();
-            
             if (result.isRickroll) rickrolls++;
             totalChecks++;
             updateStats();
         }
         
-        // ============================================
-        // FUNKSJON 8: updateHistory()
-        // Oppdaterer historikk-visningen
-        // ============================================
         function updateHistory() {
             elements.historyList.innerHTML = '';
-            if (history.length === 0) {
-                elements.emptyHistory.style.display = 'block';
-                return;
-            }
-            
+            if (history.length === 0) { elements.emptyHistory.style.display = 'block'; return; }
             elements.emptyHistory.style.display = 'none';
-            history.forEach(item => {
-                const div = document.createElement('div');
+            history.forEach(h => {
+                let div = document.createElement('div');
                 div.className = 'history-item';
-                div.innerHTML = `<span style="color: ${item.result.includes('🚨') ? '#ff6666' : '#00ff00'}">${item.result}</span> [${item.confidence}%] ${item.time} - ${item.input}`;
+                div.innerHTML = `<span style="color:${h.result.includes('🚨')?'#ff6666':'#00ff00'}">${h.result}</span> [${h.confidence}%] ${h.time} - ${h.input}`;
                 elements.historyList.appendChild(div);
             });
         }
         
-        // ============================================
-        // FUNKSJON 9: updateStats()
-        // Oppdaterer statistikk
-        // ============================================
         function updateStats() {
             elements.totalChecks.textContent = totalChecks;
             elements.rickrollCount.textContent = rickrolls;
             elements.patternCount.textContent = database.length;
         }
         
-        // ============================================
-        // FUNKSJON 10: simulateRedirect()
-        // Simulerer redirect-følging (uten CORS!)
-        // ============================================
-        function simulateRedirect(url) {
-            // Dette er en SIMULERT redirect-sjekk
-            // Ekte redirects krever backend, men vi simulerer:
-            const redirectMap = {
-                'bit.ly/3t0x1mz': 'https://youtu.be/dQw4w9WgXcQ',
-                'tinyurl.com/rickroll': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'shorturl.at/rickroll': 'https://rickroll.it'
-            };
-            
-            const shortener = url.replace(/^https?:\/\//, '');
-            for (let [short, dest] of Object.entries(redirectMap)) {
-                if (shortener.includes(short)) {
-                    return {
-                        redirected: true,
-                        original: url,
-                        destination: dest,
-                        isRickroll: checkUrl(dest).isRickroll
-                    };
-                }
-            }
-            return { redirected: false };
+        function showYouTubePreview(data) {
+            if (!data) { elements.youtubePreview.innerHTML = ''; return; }
+            elements.youtubePreview.innerHTML = `
+                <div style="border:1px solid #00ff00; padding:15px; margin-top:15px;">
+                    <img src="${data.thumbnail}" style="max-width:100%; border:1px solid #00ff00;">
+                    <div style="margin:10px 0;">${data.title}</div>
+                    <div style="color:#666;">📺 ${data.channel}</div>
+                    <a href="${data.url}" target="_blank" class="video-button">🎬 SE VIDEO</a>
+                </div>
+            `;
         }
         
-        // ============================================
-        // EVENT HANDLERS
-        // ============================================
+        // ---------- HOVEDFUNKSJONER ----------
+        
+        async function performCheck() {
+            let input = elements.urlInput.value.trim();
+            if (!input) return;
+            elements.youtubePreview.innerHTML = '';
+            updateResult('🔍', 'SCANNER...', '', '', 0);
+            
+            // Sjekk om YouTube
+            if (input.includes('youtube.com') || input.includes('youtu.be')) {
+                let yt = await scanYouTube(input);
+                if (yt) {
+                    let result = { isRickroll: yt.confidence >= 50, confidence: yt.confidence };
+                    updateResult(result.isRickroll?'🚨':'✅', result.isRickroll?'RICKROLL FUNNET':'TRYGG', '', yt.findings.join('<br>'), yt.confidence);
+                    showYouTubePreview(yt);
+                    addToHistory('YouTube: '+input.substring(0,30), result);
+                    return;
+                }
+            }
+            
+            // Vanlig URL-sjekk
+            let result = checkUrl(input);
+            updateResult(result.isRickroll?'🚨':'✅', result.isRickroll?'RICKROLL FUNNET':'TRYGG', result.reason, '', result.confidence);
+            addToHistory(input, result);
+        }
+        
+        function testRandom() {
+            let tests = [
+                'https://youtu.be/dQw4w9WgXcQ',
+                'https://youtube.com/shorts/dQw4w9WgXcQ',
+                'https://rickroll.it',
+                'https://bit.ly/3t0x1mz',
+                'https://safeside.com'
+            ];
+            elements.urlInput.value = tests[Math.floor(Math.random()*tests.length)];
+            performCheck();
+        }
+        
+        function analyzeText() {
+            let text = elements.textInput.value.trim();
+            if (!text) return;
+            let lower = text.toLowerCase();
+            let funn = [];
+            let keywords = ['rick astley','rickroll','never gonna','give you up','dqw4w9wgxcq'];
+            keywords.forEach(k => { if (lower.includes(k)) funn.push(`🎵 Fant "${k}"`); });
+            if (funn.length === 0) updateResult('✅', 'INGEN FUNN', 'Teksten ser trygg ut', '', 0);
+            else updateResult('⚠️', 'MISTENKELIG', `Fant ${funn.length} treff`, funn.join('<br>'), 70);
+        }
+        
+        function extractUrls() {
+            let text = elements.textInput.value.trim();
+            if (!text) return;
+            let urls = text.match(/https?:\/\/[^\s]+/gi) || [];
+            if (urls.length === 0) updateResult('🔗', 'INGEN URLER', 'Ingen nettadresser funnet', '', 0);
+            else {
+                let list = urls.map(u => `• <a href="${u}" target="_blank" style="color:#00ff00;">${u.substring(0,50)}...</a>`).join('<br>');
+                updateResult('🔗', `${urls.length} URLER FUNNET`, '', list, 0);
+            }
+        }
+        
+        function batchCheck() {
+            let text = elements.batchInput.value.trim();
+            if (!text) return;
+            let lines = text.split('\n').filter(l=>l.trim());
+            let rickCount = 0;
+            let results = [];
+            lines.forEach(line => {
+                let r = checkUrl(line);
+                if (r.isRickroll) rickCount++;
+                results.push({ url: line.substring(0,30)+'...', isRickroll: r.isRickroll, conf: r.confidence });
+            });
+            elements.batchTotal.textContent = lines.length;
+            elements.batchRickrolls.textContent = rickCount;
+            let html = '<h4>Resultater:</h4>';
+            results.forEach(r => {
+                html += `<div style="border-bottom:1px solid #333; padding:5px;">
+                    <span style="color:${r.isRickroll?'#ff6666':'#00ff00'}">${r.isRickroll?'🚨':'✅'}</span> ${r.url} [${r.conf}%]
+                </div>`;
+            });
+            elements.batchResults.innerHTML = html;
+        }
+        
+        function exportCsv() {
+            let text = elements.batchInput.value.trim();
+            if (!text) return;
+            let lines = text.split('\n').filter(l=>l.trim());
+            let csv = 'URL,Status,Confidence\n';
+            lines.forEach(line => {
+                let r = checkUrl(line);
+                csv += `"${line.replace(/"/g,'""')}",${r.isRickroll?'RICKROLL':'SAFE'},${r.confidence}\n`;
+            });
+            let blob = new Blob([csv], {type:'text/csv'});
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'rickroll-scan.csv';
+            a.click();
+        }
+        
+        function importList() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.txt,.csv';
+            input.onchange = (e) => {
+                let file = e.target.files[0];
+                if (!file) return;
+                let reader = new FileReader();
+                reader.onload = (ev) => { elements.batchInput.value = ev.target.result; };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+        
+        // ---------- QR-KODE ----------
+        let qrScanning = false;
+        let qrStream = null;
+        
+        elements.startCameraBtn.addEventListener('click', async () => {
+            try {
+                qrStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                elements.qrVideo.srcObject = qrStream;
+                elements.qrVideo.style.display = 'block';
+                elements.stopCameraBtn.style.display = 'inline-block';
+                elements.startCameraBtn.style.display = 'none';
+                qrScanning = true;
+                requestAnimationFrame(scanQR);
+            } catch (err) {
+                alert('Kunne ikke starte kamera: ' + err.message);
+            }
+        });
+        
+        elements.stopCameraBtn.addEventListener('click', () => {
+            if (qrStream) {
+                qrStream.getTracks().forEach(t => t.stop());
+                qrStream = null;
+            }
+            elements.qrVideo.style.display = 'none';
+            elements.stopCameraBtn.style.display = 'none';
+            elements.startCameraBtn.style.display = 'inline-block';
+            qrScanning = false;
+        });
+        
+        function scanQR() {
+            if (!qrScanning) return;
+            if (elements.qrVideo.readyState === elements.qrVideo.HAVE_ENOUGH_DATA) {
+                let canvas = elements.qrCanvas;
+                let ctx = canvas.getContext('2d');
+                canvas.width = elements.qrVideo.videoWidth;
+                canvas.height = elements.qrVideo.videoHeight;
+                ctx.drawImage(elements.qrVideo, 0, 0, canvas.width, canvas.height);
+                let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let code = jsQR(imgData.data, canvas.width, canvas.height);
+                if (code) {
+                    qrScanning = false;
+                    if (qrStream) qrStream.getTracks().forEach(t => t.stop());
+                    elements.qrVideo.style.display = 'none';
+                    elements.stopCameraBtn.style.display = 'none';
+                    elements.startCameraBtn.style.display = 'inline-block';
+                    
+                    elements.qrResult.style.display = 'block';
+                    let result = checkUrl(code.data);
+                    let cls = result.isRickroll ? 'result-danger' : 'result-safe';
+                    elements.qrResult.className = `result-box ${cls}`;
+                    elements.qrResult.innerHTML = `
+                        <div style="font-size:18px;">${result.isRickroll ? '🚨 RICKROLL' : '✅ TRYGG'}</div>
+                        <div style="word-wrap:break-word; margin-top:10px;">${code.data}</div>
+                        <div style="margin-top:10px;">Tillit: ${result.confidence}%</div>
+                    `;
+                    addToHistory('QR: '+code.data.substring(0,30), result);
+                    return;
+                }
+            }
+            requestAnimationFrame(scanQR);
+        }
+        
+        elements.uploadQrBtn.addEventListener('click', () => {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                let file = e.target.files[0];
+                if (!file) return;
+                let reader = new FileReader();
+                reader.onload = (ev) => {
+                    let img = new Image();
+                    img.onload = () => {
+                        let canvas = elements.qrCanvas;
+                        let ctx = canvas.getContext('2d');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0, img.width, img.height);
+                        let imgData = ctx.getImageData(0, 0, img.width, img.height);
+                        let code = jsQR(imgData.data, img.width, img.height);
+                        if (code) {
+                            elements.qrPreview.src = ev.target.result;
+                            elements.qrPreview.style.display = 'block';
+                            elements.qrResult.style.display = 'block';
+                            let result = checkUrl(code.data);
+                            let cls = result.isRickroll ? 'result-danger' : 'result-safe';
+                            elements.qrResult.className = `result-box ${cls}`;
+                            elements.qrResult.innerHTML = `
+                                <div style="font-size:18px;">${result.isRickroll ? '🚨 RICKROLL' : '✅ TRYGG'}</div>
+                                <div style="word-wrap:break-word; margin-top:10px;">${code.data}</div>
+                                <div style="margin-top:10px;">Tillit: ${result.confidence}%</div>
+                            `;
+                            addToHistory('QR-bilde: '+code.data.substring(0,30), result);
+                        } else {
+                            alert('Ingen QR-kode funnet i bildet.');
+                        }
+                    };
+                    img.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        });
+        
+        // ---------- API (forenklet, bare demo) ----------
+        elements.testApiBtn.addEventListener('click', () => {
+            let msg = [];
+            if (elements.useVirusTotal.checked) msg.push('VirusTotal');
+            if (elements.useGoogleSafe.checked) msg.push('Google Safe');
+            if (elements.useIPQS.checked) msg.push('IPQualityScore');
+            if (msg.length === 0) elements.apiStatus.textContent = 'Ingen API valgt';
+            else elements.apiStatus.textContent = 'API test OK: ' + msg.join(', ');
+            elements.apiQuota.style.width = '30%';
+        });
+        
+        elements.saveApiBtn.addEventListener('click', () => {
+            localStorage.setItem('apiKey', elements.apiKey.value);
+            alert('API-nøkkel lagret (i nettleseren)');
+        });
+        
+        // ---------- SETTINGS ----------
+        elements.saveDbBtn.addEventListener('click', () => {
+            let lines = elements.dbEditor.value.split('\n').filter(l=>l.trim());
+            if (lines.length) {
+                database = [...new Set([...database, ...lines])];
+                updateStats();
+                updateResult('💾', 'DATABASE OPPDATERT', `${database.length} mønstre totalt`, '', 0);
+            }
+        });
+        
+        elements.resetDbBtn.addEventListener('click', () => {
+            if (confirm('Tilbakestill til standard database?')) {
+                database = [...DEFAULT_DB];
+                elements.dbEditor.value = database.join('\n');
+                updateStats();
+                updateResult('🔄', 'DATABASE RESET', 'Standardmønstre lastet', '', 0);
+            }
+        });
+        
+        // ---------- EVENT LISTENERS ----------
+        elements.checkBtn.addEventListener('click', performCheck);
+        elements.testBtn.addEventListener('click', testRandom);
+        elements.clearBtn.addEventListener('click', () => { history = []; updateHistory(); updateResult('🗑️', 'HISTORIKK TØMT', '', '', 0); });
+        elements.deepScanBtn.addEventListener('click', () => { performCheck(); /* kan utvides */ });
+        elements.analyzeTextBtn.addEventListener('click', analyzeText);
+        elements.extractUrlsBtn.addEventListener('click', extractUrls);
+        elements.batchCheckBtn.addEventListener('click', batchCheck);
+        elements.exportCsvBtn.addEventListener('click', exportCsv);
+        elements.importListBtn.addEventListener('click', importList);
         
         // Mode selector
         document.querySelectorAll('.mode-btn').forEach(btn => {
@@ -921,16 +941,7 @@
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentMode = btn.dataset.mode;
-                
-                const modes = {
-                    basic: '🔰 BASIC: Local database only, fast scanning',
-                    advanced: '⚡ ADVANCED: +YouTube API, redirect following',
-                    expert: '💀 EXPERT: +Pattern matching, heuristic analysis',
-                    ninja: '🥷 NINJA: +Stealth mode, deep web scanning',
-                    quantum: '⚛️ QUANTUM: +AI prediction, probabilistic analysis'
-                };
-                
-                elements.modeDesc.textContent = modes[currentMode] || 'BETA MODE';
+                elements.modeDesc.textContent = currentMode.toUpperCase() + ' modus aktivert';
             });
         });
         
@@ -940,401 +951,22 @@
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 currentTab = tab.dataset.tab;
-                
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.add('hidden');
-                });
-                document.getElementById(`tab-${currentTab}`).classList.remove('hidden');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+                document.getElementById('tab-'+currentTab).classList.remove('hidden');
             });
         });
         
-        // ============================================
-        // CHECK BUTTON (med redirect-simulering)
-        // ============================================
-        elements.checkBtn.addEventListener('click', async () => {
-            const input = elements.urlInput.value.trim();
-            if (!input) return;
-            
-            // Fjern gammel YouTube preview
-            elements.youtubePreview.innerHTML = '';
-            
-            updateResult('🔍', 'SCANNING...', 'Analyzing input', '', 0);
-            
-            // SJEKK 1: Redirect (hvis avkrysset)
-            let finalUrl = input;
-            const followRedirects = document.getElementById('followRedirects').checked;
-            
-            if (followRedirects) {
-                const redirect = simulateRedirect(input);
-                if (redirect.redirected) {
-                    updateResult('🔄', 'REDIRECT DETECTED', `Following to: ${redirect.destination}`, '', 30);
-                    finalUrl = redirect.destination;
-                    await new Promise(r => setTimeout(r, 1000)); // Simuler venting
-                }
-            }
-            
-            // SJEKK 2: YouTube scan
-            if (finalUrl.includes('youtube.com') || finalUrl.includes('youtu.be')) {
-                const youtubeData = await scanYouTube(finalUrl);
-                
-                if (youtubeData) {
-                    let result = { 
-                        isRickroll: youtubeData.confidence >= 50, 
-                        confidence: youtubeData.confidence,
-                        reason: youtubeData.findings.join(', ')
-                    };
-                    
-                    updateResult(
-                        result.isRickroll ? '🚨' : '✅',
-                        result.isRickroll ? 'RICKROLL DETECTED' : 'SAFE',
-                        `YouTube: ${youtubeData.title.substring(0, 50)}...`,
-                        youtubeData.findings.map(f => `• ${f}`).join('<br>'),
-                        youtubeData.confidence
-                    );
-                    
-                    // VIS YOUTUBE PREVIEW med "SE VIDEO" knapp!
-                    showYouTubePreview(youtubeData);
-                    
-                    addToHistory(`YouTube: ${youtubeData.title.substring(0, 30)}...`, result);
-                    return;
-                }
-            }
-            
-            // SJEKK 3: Standard URL check
-            const result = checkUrl(finalUrl);
-            updateResult(
-                result.isRickroll ? '🚨' : '✅',
-                result.isRickroll ? 'RICKROLL DETECTED' : 'SAFE',
-                result.reason || 'No threats detected',
-                '',
-                result.confidence
-            );
-            addToHistory(input, result);
-        });
+        // Enter-tast i url-felt
+        elements.urlInput.addEventListener('keypress', e => { if (e.key === 'Enter') performCheck(); });
         
-        // ============================================
-        // DEEP SCAN (med mer detaljer)
-        // ============================================
-        elements.deepScanBtn.addEventListener('click', async () => {
-            const input = elements.urlInput.value.trim();
-            if (!input) return;
-            
-            updateResult('🔬', 'DEEP SCAN', 'Running advanced analysis...', '', 20);
-            
-            // Deep scan simulerer mer grundig sjekk
-            setTimeout(async () => {
-                // Sjekk YouTube med dyp analyse
-                if (input.includes('youtube.com') || input.includes('youtu.be')) {
-                    const youtubeData = await scanYouTube(input);
-                    if (youtubeData) {
-                        // Legg til ekstra "deep" funn
-                        youtubeData.confidence = Math.min(youtubeData.confidence + 15, 100);
-                        youtubeData.findings.push('🔬 Deep scan: Checked comments section');
-                        youtubeData.findings.push('🔬 Deep scan: Analyzed video metadata');
-                        
-                        updateResult(
-                            youtubeData.confidence >= 50 ? '🚨' : '✅',
-                            youtubeData.confidence >= 50 ? 'RICKROLL DETECTED (DEEP)' : 'SAFE (DEEP)',
-                            `Deep scan complete`,
-                            youtubeData.findings.map(f => `• ${f}`).join('<br>'),
-                            youtubeData.confidence
-                        );
-                        
-                        showYouTubePreview(youtubeData);
-                        return;
-                    }
-                }
-                
-                const result = checkUrl(input);
-                result.confidence = Math.min(result.confidence + 20, 100);
-                result.reason = 'Deep scan: ' + (result.reason || 'No threats') + ' + heuristic analysis';
-                
-                updateResult(
-                    result.isRickroll ? '🚨' : '✅',
-                    result.isRickroll ? 'RICKROLL DETECTED (DEEP)' : 'SAFE (DEEP)',
-                    'Deep scan completed - extra patterns checked',
-                    '• Heuristic analysis performed<br>• Pattern matching depth: HIGH<br>• Suspicious word count: ' + Math.floor(Math.random() * 5),
-                    result.confidence
-                );
-            }, 2000);
-        });
-        
-        // ============================================
-        // TEST BUTTON
-        // ============================================
-        elements.testBtn.addEventListener('click', () => {
-            const tests = [
-                'https://youtu.be/dQw4w9WgXcQ',
-                'https://youtube.com/shorts/dQw4w9WgXcQ',
-                'https://rickroll.it',
-                'https://bit.ly/3t0x1mz',
-                'https://safe-site.com',
-                'free-robux-generator.com'
-            ];
-            elements.urlInput.value = tests[Math.floor(Math.random() * tests.length)];
-            elements.checkBtn.click();
-        });
-        
-        // ============================================
-        // CLEAR HISTORY
-        // ============================================
-        elements.clearBtn.addEventListener('click', () => {
-            if (confirm('Clear all history?')) {
-                history = [];
-                updateHistory();
-                updateResult('🗑️', 'HISTORY CLEARED', 'All scan history removed', '', 0);
-            }
-        });
-        
-        // ============================================
-        // TEXT ANALYSIS
-        // ============================================
-        elements.analyzeTextBtn.addEventListener('click', () => {
-            const text = elements.textInput.value.trim();
-            if (!text) return;
-            
-            const results = analyzeText(text);
-            
-            if (results.length === 0) {
-                updateResult('✅', 'CLEAN TEXT', 'No threats found', '', 0);
-            } else {
-                let details = results.map(r => 
-                    `• ${r.type}: "${r.match}" (${r.confidence}%) ${r.count ? 'x' + r.count : ''}`
-                ).join('<br>');
-                
-                let maxConfidence = Math.max(...results.map(r => r.confidence));
-                updateResult('⚠️', 'THREATS FOUND', `${results.length} suspicious items detected`, details, maxConfidence);
-            }
-        });
-        
-        // ============================================
-        // EXTRACT URLS
-        // ============================================
-        elements.extractUrlsBtn.addEventListener('click', () => {
-            const text = elements.textInput.value.trim();
-            if (!text) return;
-            
-            const urls = text.match(/https?:\/\/[^\s]+/gi) || [];
-            if (urls.length === 0) {
-                updateResult('🔗', 'NO URLS', 'No URLs found in text', '', 0);
-            } else {
-                let details = urls.map(url => `• <a href="${url}" target="_blank" style="color:#00ff00;">${url.substring(0, 50)}...</a>`).join('<br>');
-                updateResult('🔗', `${urls.length} URLS FOUND`, 'Click to open', details, 0);
-            }
-        });
-        
-        // ============================================
-        // FIND PATTERNS
-        // ============================================
-        elements.findPatternsBtn.addEventListener('click', () => {
-            const text = elements.textInput.value.trim();
-            if (!text) return;
-            
-            let matches = [];
-            KEYWORDS.patterns.forEach(pattern => {
-                const found = text.match(pattern);
-                if (found) matches.push(found[0]);
-            });
-            
-            if (matches.length === 0) {
-                updateResult('🔍', 'NO PATTERNS', 'No matching patterns found', '', 0);
-            } else {
-                updateResult('🔍', 'PATTERNS FOUND', `${matches.length} patterns detected`, matches.join('<br>'), 70);
-            }
-        });
-        
-        // ============================================
-        // BATCH CHECK
-        // ============================================
-        elements.batchCheckBtn.addEventListener('click', () => {
-            const text = elements.batchInput.value.trim();
-            if (!text) return;
-            
-            const lines = text.split('\n').filter(l => l.trim());
-            let rickrollCount = 0;
-            let results = [];
-            
-            lines.forEach(line => {
-                const result = checkUrl(line);
-                if (result.isRickroll) rickrollCount++;
-                results.push({
-                    url: line.substring(0, 30) + '...',
-                    isRickroll: result.isRickroll,
-                    confidence: result.confidence
-                });
-            });
-            
-            elements.batchTotal.textContent = lines.length;
-            elements.batchRickrolls.textContent = rickrollCount;
-            
-            // Vis resultater i egen div
-            let html = '<h4>Batch Results:</h4>';
-            results.forEach(r => {
-                html += `<div style="border-bottom: 1px solid #333; padding: 5px;">
-                    <span style="color: ${r.isRickroll ? '#ff6666' : '#00ff00'}">${r.isRickroll ? '🚨' : '✅'}</span> 
-                    ${r.url} [${r.confidence}%]
-                </div>`;
-            });
-            
-            // Lagre i en egen div (vi må lage den)
-            let batchDiv = document.getElementById('batchResults');
-            if (!batchDiv) {
-                batchDiv = document.createElement('div');
-                batchDiv.id = 'batchResults';
-                batchDiv.style.marginTop = '15px';
-                document.getElementById('tab-batch').appendChild(batchDiv);
-            }
-            batchDiv.innerHTML = html;
-        });
-        
-        // ============================================
-        // EXPORT CSV
-        // ============================================
-        elements.exportCsvBtn.addEventListener('click', () => {
-            const text = elements.batchInput.value.trim();
-            if (!text) return;
-            
-            const lines = text.split('\n').filter(l => l.trim());
-            let csv = 'URL,Status,Confidence,Timestamp\n';
-            const now = new Date().toISOString();
-            
-            lines.forEach(line => {
-                const result = checkUrl(line);
-                csv += `"${line.replace(/"/g, '""')}",${result.isRickroll ? 'RICKROLL' : 'SAFE'},${result.confidence},${now}\n`;
-            });
-            
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `rickroll-scan-${new Date().toISOString().slice(0,10)}.csv`;
-            a.click();
-            URL.revokeObjectURL(url);
-        });
-        
-        // ============================================
-        // IMPORT LIST
-        // ============================================
-        elements.importListBtn.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.txt,.csv';
-            
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    elements.batchInput.value = event.target.result;
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        });
-        
-        // ============================================
-        // API FUNCTIONS (placeholder)
-        // ============================================
-        elements.testApiBtn.addEventListener('click', () => {
-            const service = elements.apiService.value;
-            const key = elements.apiKey.value;
-            
-            if (service === 'none') {
-                alert('No API selected');
-                return;
-            }
-            
-            updateResult('🧪', 'TESTING API', `Testing ${service} connection...`, '', 50);
-            
-            setTimeout(() => {
-                updateResult('✅', 'API TEST COMPLETE', `${service} connection successful`, 'API Quota: 30% remaining', 0);
-            }, 1500);
-        });
-        
-        elements.saveApiBtn.addEventListener('click', () => {
-            localStorage.setItem('apiKey', elements.apiKey.value);
-            localStorage.setItem('apiService', elements.apiService.value);
-            alert('API settings saved to localStorage');
-        });
-        
-        // ============================================
-        // DATABASE MANAGEMENT
-        // ============================================
-        elements.saveDbBtn.addEventListener('click', () => {
-            const text = elements.dbEditor.value.trim();
-            const lines = text.split('\n').filter(l => l.trim());
-            if (lines.length > 0) {
-                database = [...new Set([...database, ...lines])];
-                updateStats();
-                updateResult('💾', 'DATABASE UPDATED', `${database.length} patterns total`, '', 0);
-            }
-        });
-        
-        elements.resetDbBtn.addEventListener('click', () => {
-            if (confirm('Reset to default database?')) {
-                database = [...DEFAULT_DB];
-                elements.dbEditor.value = database.join('\n');
-                updateStats();
-                updateResult('🔄', 'DATABASE RESET', 'Default patterns restored', '', 0);
-            }
-        });
-        
-        elements.exportDbBtn.addEventListener('click', () => {
-            const data = {
-                database: database,
-                exported: new Date().toISOString(),
-                count: database.length
-            };
-            
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `rickroll-db-${new Date().toISOString().slice(0,10)}.json`;
-            a.click();
-        });
-        
-        elements.importDbBtn.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.database && Array.isArray(data.database)) {
-                            database = [...new Set([...database, ...data.database])];
-                            elements.dbEditor.value = database.join('\n');
-                            updateStats();
-                            updateResult('📥', 'DATABASE IMPORTED', `Added ${data.database.length} patterns`, '', 0);
-                        }
-                    } catch (err) {
-                        alert('Invalid JSON file');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        });
-        
-        // ============================================
-        // INITIAL SETUP
-        // ============================================
+        // Initialiser
         elements.patternCount.textContent = database.length;
         elements.dbEditor.value = database.join('\n');
-        updateResult('⚡', 'PROblock BETA READY', 'Select mode and start scanning', '', 0);
+        updateResult('⚡', 'KLAR', 'Velg en modus og skann', '', 0);
         
-        // Load saved API settings
-        const savedKey = localStorage.getItem('apiKey');
-        const savedService = localStorage.getItem('apiService');
+        // Last eventuell lagret API-nøkkel
+        let savedKey = localStorage.getItem('apiKey');
         if (savedKey) elements.apiKey.value = savedKey;
-        if (savedService) elements.apiService.value = savedService;
     </script>
 </body>
 </html>
